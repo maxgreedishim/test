@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import CompanySelect from './CompanySelect';
+import FlatTree from './FlatTree';
 
-function App() {
+
+const App = () => {
+  const [selectedCompany, setSelectedCompany] = useState(null);
+
+  const handleCompanySelect = (company) => {
+    setSelectedCompany(company);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div style={{ position: "relative", top: "10px", left: "10px" }}>
+        <CompanySelect onSelect={handleCompanySelect} />
+        {selectedCompany && (
+            <FlatTree companyId={selectedCompany.id}
+                company={selectedCompany}
+            />
+        )}
+      </div>
   );
-}
+};
 
 export default App;
