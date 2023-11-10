@@ -7,15 +7,14 @@ const App = () => {
   const [selectedCompany, setSelectedCompany] = useState(null);
 
   const handleCompanySelect = (company) => {
+      console.log("selectedCompany",company)
     setSelectedCompany(company);
   };
   return (
       <div style={{ position: "relative", top: "10px", left: "10px" }}>
         <CompanySelect onSelect={handleCompanySelect} />
         {selectedCompany && (
-            <FlatTree companyId={selectedCompany.id}
-                company={selectedCompany}
-            />
+            <FlatTree company={selectedCompany} />
         )}
       </div>
   );
